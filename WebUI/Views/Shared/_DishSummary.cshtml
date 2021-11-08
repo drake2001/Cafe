@@ -1,0 +1,31 @@
+﻿@model Domain.Entities.Dish
+<div class="well">
+    <div class="row">
+        <div class="col-xs-9">
+            <h3>
+                <strong>@Model.Name</strong>
+            </h3>
+            <h4>
+                <strong>@Model.Author</strong>
+            </h4>
+        </div>
+        <div class="col-xs-3">
+            <h3>
+                <strong id="price"class="pull right label label-primary">
+                    @Model.Price.ToString("# руб")
+                </strong>
+            </h3>
+            @using (Html.BeginForm("AddToBascket", "Bascket"))
+            {
+                <div class="pull-right">
+                    @Html.HiddenFor(x => x.DishID)
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" class="btn btn-success" value="Добавить в корзину"/>
+                </div>
+            }
+        </div>
+    </div>
+    <span class="lead"> @Model.Description</span>
+
+
+</div>
